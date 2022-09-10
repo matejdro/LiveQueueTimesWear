@@ -1,6 +1,8 @@
 plugins {
    id("com.android.application")
    kotlin("android")
+
+   alias(libs.plugins.ksp)
 }
 
 android {
@@ -44,4 +46,9 @@ dependencies {
    implementation(libs.androidx.compose.ui.toolingPreview)
    implementation(libs.androidx.wear)
    implementation(libs.logcat)
+   implementation(libs.moshi)
+   implementation(libs.retrofit)
+   implementation(libs.retrofit.moshi)
+
+   ksp(libs.moshi.codegen)
 }

@@ -10,6 +10,11 @@ dagger = "2.38.1"
 logcat = "0.1"
 kotlin = "1.7.10"
 retrofit = "2.9.0"
+moshi = "1.14.0"
+ksp = "1.7.10-1.0.6"
+
+[plugins]
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [libraries]
 androidPluginGradle = { module = "com.android.tools.build:gradle", version.ref = "androidPluginGradle" }
@@ -32,3 +37,6 @@ dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref
 logcat = { module = "com.squareup.logcat:logcat", version.ref = "logcat" }
 kotlin-pluginGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
