@@ -52,7 +52,7 @@ private fun RideList(rideData: RideData, refresh: () -> Unit) {
       Modifier
          .fillMaxSize()
          .verticalScroll(rememberScrollState())
-         .padding(vertical = 8.dp),
+         .padding(vertical = 16.dp, horizontal = 16.dp),
       verticalArrangement = Arrangement.spacedBy(8.dp),
       horizontalAlignment = Alignment.CenterHorizontally
    ) {
@@ -82,7 +82,10 @@ private fun RideList(rideData: RideData, refresh: () -> Unit) {
       }
 
       for (ride in rideData.rides) {
-         Text("${ride.name} - ${ride.waitingTimeMinutes} min")
+         Text(
+            "${ride.name} - ${ride.waitingTimeMinutes} min",
+            textAlign = TextAlign.Center
+         )
       }
    }
 }
