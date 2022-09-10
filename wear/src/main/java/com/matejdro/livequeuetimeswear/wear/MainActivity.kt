@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,9 +12,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.input.rotary.onRotaryScrollEvent
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,10 +33,12 @@ import com.matejdro.livequeuetimeswear.wear.model.Ride
 import com.matejdro.livequeuetimeswear.wear.model.RideData
 import com.matejdro.livequeuetimeswear.wear.model.Status
 import com.matejdro.livequeuetimeswear.wear.theme.WearAppTheme
+import kotlinx.coroutines.launch
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import kotlin.math.roundToInt
 
 class MainActivity : ComponentActivity() {
    private val viewModel by viewModels<MainViewModel>()
@@ -46,12 +56,29 @@ class MainActivity : ComponentActivity() {
    }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun RideList(rideData: RideData, refresh: () -> Unit) {
+   val scrollState = rememberScrollState()
+   val coroutineScope = rememberCoroutineScope()
+   val focusRequester = remember { FocusRequester() }
+
+
    Column(
       Modifier
          .fillMaxSize()
-         .verticalScroll(rememberScrollState())
+         .verticalScroll(scrollState)
+         .onRotaryScrollEvent {
+            coroutineScope.launch {
+               scrollState.scrollTo(
+                  (scrollState.value +
+                          it.verticalScrollPixels).roundToInt()
+               )
+            }
+            true
+         }
+         .focusRequester(focusRequester)
+         .focusable()
          .padding(vertical = 16.dp, horizontal = 16.dp),
       verticalArrangement = Arrangement.spacedBy(8.dp),
       horizontalAlignment = Alignment.CenterHorizontally
@@ -87,6 +114,10 @@ private fun RideList(rideData: RideData, refresh: () -> Unit) {
             textAlign = TextAlign.Center
          )
       }
+   }
+
+   LaunchedEffect(Unit) {
+      focusRequester.requestFocus()
    }
 }
 
