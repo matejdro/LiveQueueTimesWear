@@ -34,12 +34,14 @@ class MainViewModel : ViewModel() {
             }
             val queueTimes = repo.fetchQueueTimes()
 
-            val lands = queueTimes.lands.filterNot { it.name == "Fantasy" }
+            val lands = queueTimes.lands
             val rides = lands.map { land ->
-               land.rides.filter { it.isOpen != false }.map { ride ->
-                  Ride(ride.name, ride.waitTime)
-               }
-            }.flatten()
+               land.rides.filter { it.isOpen != false && !it.name.contains("VirtualLine")}
+                .map { ride ->
+                    Ride(ride.name, ride.waitTime)
+                }
+            }
+               .flatten()
                .sortedBy { it.waitingTimeMinutes }
 
             val lastRefreshTime = lands.maxOfWithOrNull(nullsFirst()) { land ->
