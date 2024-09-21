@@ -110,7 +110,7 @@ private fun RideList(rideData: RideData, refresh: () -> Unit) {
 
       for (ride in rideData.rides) {
          Text(
-            "${ride.name} - ${ride.waitingTimeMinutes} min",
+            "${ride.name} [${ride.area.orEmpty().take(3)}] - ${ride.waitingTimeMinutes} min",
             textAlign = TextAlign.Center
          )
       }
@@ -130,18 +130,18 @@ private fun RideListPreview() {
             Status.SUCCESS,
             ZonedDateTime.of(2022, 3, 10, 10, 30, 0, 0, ZoneId.systemDefault()).toInstant(),
             listOf(
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2)
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2)
             )
          )
       ) {}
@@ -157,18 +157,18 @@ private fun RideListRefreshing() {
             Status.LOADING,
             ZonedDateTime.of(2022, 3, 10, 10, 30, 0, 0, ZoneId.systemDefault()).toInstant(),
             listOf(
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2)
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2)
             )
          )
       ) {}
@@ -184,18 +184,18 @@ private fun RideListError() {
             Status.ERROR,
             ZonedDateTime.of(2022, 3, 10, 10, 30, 0, 0, ZoneId.systemDefault()).toInstant(),
             listOf(
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2),
-               Ride("Super Coaster", 7),
-               Ride("Splasher", 2),
-               Ride("House on the Hilld", 2)
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2),
+               Ride("Super Coaster", "Fantasy", 7),
+               Ride("Splasher", "Adrenaline", 2),
+               Ride("House on the Hilld", "Adrenaline", 2)
             )
          )
       ) {}
